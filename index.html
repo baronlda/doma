@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#193ecf"><meta name="description" content="Doma — демонстраційний магазин речей для кухні, прибирання та зберігання. Каталог, кошик та оформлення замовлення.">
+  <title>Doma — речі для дому</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=1"><link rel="stylesheet" href="accessibility.css?v=1"><script src="app.js?v=1" defer></script>
+</head>
+<body>
+  <a class="skip" href="#catalog">До товарів</a>
+  <div class="demo-bar">Магазин для портфоліо · замовлення та оплата демонстраційні</div>
+  <header class="header">
+    <a class="logo" href="#" aria-label="Doma — головна">doma<span>®</span></a>
+    <p class="header-note">Для маленьких справ.<br>І великого затишку.</p>
+    <button class="cart-button" id="open-cart" aria-label="Відкрити кошик, 0 товарів"><span>Кошик</span><span id="cart-count" class="count">0</span></button>
+  </header>
+  <main id="catalog">
+    <section class="catalog-head" aria-labelledby="catalog-title">
+      <div><p class="eyebrow">Колекція для щоденного життя</p><h1 id="catalog-title">Вдома добре.</h1></div>
+      <p class="intro">Горнятко для ранкової кави.<br>Кошик, де все на своєму місці.<br>Прості речі, які хочеться мати поруч.</p>
+      <div class="round-note" aria-hidden="true">маленькі<br>радощі<br><span>щодня ✳</span></div>
+    </section>
+    <nav class="categories" aria-label="Категорії товарів">
+      <button class="active" data-category="all" aria-pressed="true">Усі речі <span>06</span></button>
+      <button data-category="kitchen" aria-pressed="false">Кухня <span>02</span></button>
+      <button data-category="cleaning" aria-pressed="false">Прибирання <span>02</span></button>
+      <button data-category="storage" aria-pressed="false">Зберігання <span>02</span></button>
+    </nav>
+    <div class="catalog-caption"><span id="result-count">6 речей для вашого дому</span><span>Ціни та товари — приклади</span></div>
+    <section class="products" id="products" aria-label="Товари"></section>
+    <aside class="end-note"><span class="asterisk" aria-hidden="true">✳</span><p>Менше зайвого.<br><strong>Більше свого.</strong></p><span>Кухня · Прибирання · Зберігання</span></aside>
+  </main>
+  <footer><a class="footer-logo" href="#" aria-label="На початок">doma.</a><div><p>Демонстраційний інтернет-магазин.</p><p>Товари та фотографії ілюстративні. Дані не надсилаються,<br>кошти не списуються, доставка не здійснюється.</p></div><span>Зроблено для портфоліо · 2026</span></footer>
+  <dialog id="product-dialog" class="product-dialog" aria-labelledby="product-title"></dialog>
+  <dialog id="cart-dialog" class="cart-dialog" aria-labelledby="cart-title">
+    <div class="dialog-head"><h2 id="cart-title">Ваш кошик <span id="drawer-count"></span></h2><button class="close" data-close aria-label="Закрити кошик">×</button></div>
+    <div id="cart-content"></div>
+  </dialog>
+  <dialog id="checkout-dialog" class="checkout-dialog" aria-labelledby="checkout-title">
+    <div class="dialog-head"><h2 id="checkout-title">Оформлення замовлення</h2><button class="close" data-close aria-label="Закрити оформлення">×</button></div>
+    <div class="checkout-layout">
+      <form id="checkout-form">
+        <p class="demo-note">Демо: використовуйте вигадані дані. Замовлення залишиться лише на цьому екрані.</p>
+        <fieldset><legend>01 · Контактні дані</legend><label>Ім’я<input name="customer" autocomplete="off" required minlength="2" maxlength="60" placeholder="Наприклад, Олена"></label><label>Телефон<input name="phone" type="tel" autocomplete="off" required pattern="[+]?[0-9 ()-]{10,20}" maxlength="20" placeholder="+380 00 000 00 00"></label></fieldset>
+        <fieldset><legend>02 · Доставка</legend><label>Спосіб доставки<select name="delivery"><option value="post">До відділення · 80 ₴</option><option value="pickup">Самовивіз · безкоштовно</option></select></label><div id="address-fields"><label>Місто<input name="city" required maxlength="60" autocomplete="off" placeholder="Назва міста"></label><label>Номер відділення<input name="branch" required maxlength="10" pattern="[0-9]{1,5}" inputmode="numeric" placeholder="Наприклад, 12"></label></div><p id="pickup-note" hidden>Демонстраційний самовивіз. Реальної точки видачі немає.</p></fieldset>
+        <fieldset><legend>03 · Оплата</legend><label class="radio"><input type="radio" name="payment" value="card" checked> Карткою · демо без списання</label><label class="radio"><input type="radio" name="payment" value="receipt"> При отриманні · демо</label><p class="small">Номер картки та банківські дані не потрібні.</p></fieldset>
+        <label class="ack"><input type="checkbox" required> Розумію, що це тестове замовлення без оплати та доставки.</label>
+        <button class="primary" type="submit" id="place-order">Оплатити та замовити · демо</button>
+      </form>
+      <aside class="order-summary" id="order-summary" aria-label="Підсумок замовлення"></aside>
+    </div>
+  </dialog>
+  <dialog id="success-dialog" class="success-dialog" aria-labelledby="success-title"></dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
