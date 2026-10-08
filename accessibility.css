@@ -1,3 +1,4 @@
 /* Readable shopping controls and product information. */
 .categories button,.add-button{font-size:14px}
 .product-details>p:not(.eyebrow):not(.small):not(.price){font-size:16px}
+@media(max-width:640px){.round-note{display:none}}
